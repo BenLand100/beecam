@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Hive One Cam | ben.land</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A live, 1080p view of hive one.">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+  </head>
+  
+  <body style="">
+    <video id="beecam_stream" width="100%" controls style=""></video>
+    <script>
+    var video = document.getElementById('beecam_stream');
+    var src = 'https://ben.land/beecam/stream/hive1.m3u8';
+    if (Hls.isSupported()) {
+        var hls = new Hls({
+            debug: true
+        });
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+    }
+    </script> 
+  </body>
+
+</html>
+
+

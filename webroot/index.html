@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <title>BeeCam | ben.land</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Livestreams of my beehives in the Philly suburbs.">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,700;1,800&display=swap" rel="stylesheet"> 
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LH6TXZN0X"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9LH6TXZN0X');
+    </script>
+  </head>
+  
+  <body style="">
+    <h1 style="text-align: center;">
+    BeeCam Livestreams
+    </h1>
+    <h3 style="text-align: center;">
+    <a id="hive1_link" onclick="show_feeds(true,false)">Hive One</a> | <a id="hive2_link" onclick="show_feeds(false,true)">Hive Two</a> | <a id="both_link" onclick="show_feeds(true,true)">Both Hives</a>
+    </h3>
+    <div id="hive1">
+    <video id="hive1_stream" width="100%" controls style=""></video>
+    </div>
+    <script>
+    var video = document.getElementById('hive1_stream');
+    var src = 'https://ben.land/beecam/stream/hive1.m3u8';
+    if (Hls.isSupported()) {
+        var hls = new Hls({
+            debug: true
+        });
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+    }
+    </script> 
+    <div id="hive2">
+    <video id="hive2_stream" width="100%" controls style=""></video>
+    </div>
+    <script>
+    var video = document.getElementById('hive2_stream');
+    var src = 'https://ben.land/beecam/stream/hive2.m3u8';
+    if (Hls.isSupported()) {
+        var hls = new Hls({
+            debug: true
+        });
+        hls.loadSource(src);
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MEDIA_ATTACHED, () => {
+        });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = src;
+    }
+    </script> 
+    <script>
+      var h1 = document.getElementById("hive1");
+      var h2 = document.getElementById("hive2");
+      var h1l = document.getElementById("hive1_link");
+      var h2l = document.getElementById("hive2_link");
+      var bl = document.getElementById("both_link");
+      h1.style.display = "flex";
+      h2.style.display = "none";
+      h1l.style.fontWeight = "bold";
+      h2l.style.fontWeight = "normal";
+      bl.style.fontWeight = "normal";
+      function show_feeds(h1_vis, h2_vis) {
+        if (h1_vis & h2_vis) {
+          h1l.style.fontWeight = "normal";
+          h2l.style.fontWeight = "normal";
+          bl.style.fontWeight = "bold";
+        } else if (h1_vis) {
+          h1l.style.fontWeight = "bold";
+          h2l.style.fontWeight = "normal";
+          bl.style.fontWeight = "normal";
+        } else if (h2_vis) {
+          h1l.style.fontWeight = "normal";
+          h2l.style.fontWeight = "bold";
+          bl.style.fontWeight = "normal";
+        }
+        if (h1_vis) {
+          h1.style.display = "flex";
+          h1.style.justify_content = "space-around";
+          h1.style.align_items = "center";
+        } else {
+          h1.style.display = "none";
+        }
+        if (h2_vis) {
+          h2.style.display = "flex";
+          h2.style.justify_content = "space-around";
+          h2.style.align_items = "center";
+        } else {
+          h2.style.display = "none";
+        }
+      } 
+    </script> 
+    <p style="text-align: center;">
+    These are livestreams of two wild-caught honeybee colonies that I keep in the Philly suburbs. Details on the livestreaming setup are <a href="https://ben.land/post/2023/06/20/hacking-together-beecam/">on my blog</a>. Check out the descriptions and links below for pictures and videos of bee activity.
+    </p>
+    <div id="hive_details">
+    <h3 style="">Hive One</h3>
+    <p style="">
+    Scout bees were <a href="https://immich.ben.land/share/KcVeImq0CCUSl56xaOdp8OXOIbfTgBSJGRdPkSlGEZT2ZlpQmknVs3q8QaMVZNFYpa8">checking out the swarm lure</a> towards the end of April. Eventually <a href="https://immich.ben.land/share/QTbGFIk-EAT8NPsbUX_NTqcnAG8qvq4p6AFBIHm6uOR9BuJwjgMPNzOpzacQUMbO1kw">a swarm arrived</a>  and was re-homed May 2nd into an 8-frame deep hive box - Hive One - with some pre-drawn comb from last year's colony.
+    </p>
+    <p style="">
+    Hive One is doing well, and weekly inspections indicate steady brood rearing and a healthy queen. The original deep box was full as of June 16, and an empty medium box was added so the bees can stockpile for the winter. A third box was added towards the end of July. A fourth box went on early in September to wrap up the season. Oxalic acid treatments for <a href="https://en.wikipedia.org/wiki/Varroa_destructor">Varroa mites</a> at the end of August revealing a low mite load and two full medium boxes of honey with another on the way suggest Hive One will be ready for winter.
+    </p>
+    <p style="">
+    As the season wraps up, the Hive One colony will be stockpiling pollen and honey and the population will start to reduce for the winter. This large supply of resources will attract other bees, wasps, and various pests. You will sometimes see European Giant Hornets hovering in front of the hive, hoping to grab a bee. Hive one is a large, strong colony and is more than able to defend itself, and guard bees will attack if the hornets get too close. Small hive beetle traps were installed early September as a cautionary measure, since Hive Two experienced an infestation (more below).
+    </p>
+    <h3 style="">Hive Two</h3>
+    <p style="">
+    A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29 indicates they're here to stay, with the one frame in the bait hive full of brood, so foundation frames were added to the box. After solid growth in the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. Weak crawling bees were observed, indicating the foragers may have stumbled into pesticides. The colony appeared to have issues raising new bees, with capped worker pupa being uncapped and removed (these appear to be <a href="https://phys.org/news/2021-01-hygienic-honey-bees-resistant-destructive.html">hygienic bees</a>!), becoming a very sparse brood pattern by mid August. The queen was still present as of September but had stopped laying new eggs. 
+    </p>
+    <p style="">
+    Low population of bees led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5th, losing 4 frames of drawn comb. Sugar water was fed to the bees to encourage new comb production, and we continued to monitor Hive Two for new eggs. I considered adding a frame of brood from Hive One to help this hive recover, but unfortunately the queen decided to abscond (leave) the morning of September 11th. Bees were observed leaving the hive en mass to presumably try to escape the issues they enountered this season. We will prepare for either a split of Hive One or a new swarm for Hive Two next season.
+    </p>
+    <h3 style="">Astrophotography</h3>
+    <p style="">
+    If you've seen my telescope out at night, <a href="https://immich.ben.land/share/C0HEi5rSDIGh38n8l3MGSIBTWWiMLH8QgzF-V-IqPn5E6aDfskwJT8bKreeBRYKCFgs">pictures of galaxies, nebulas, etc., with descriptions</a> are available for viewing.
+    </p>
+    </div>
+  </body>
+
+</html>
+
+
