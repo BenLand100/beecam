@@ -109,19 +109,24 @@
         if (hive1_iframe == null) {
             hive1_iframe = document.createElement("iframe");
             hive1_iframe.setAttribute('src','stream/hive1_metrics.html')
-            hive1_iframe.setAttribute('style','height: auto; width: 100%; aspect-ratio:1.68; border: none;')
+            hive1_iframe.setAttribute('style','height: auto; width: 100%; aspect-ratio:2; border: none;')
             document.getElementById('hive1_metrics').appendChild(hive1_iframe);
-            document.getElementById('load_hive1_metrics').style.display = "none";
+            document.getElementById('load_hive1_metrics').text = "(refresh metrics)";
+        } else {
+            hive1_iframe.setAttribute('src','stream/hive1_metrics.html')
         }
     }
     var hive2_iframe = null;
     function load_hive2_metrics() {
+        return; //TBD
         if (hive2_iframe == null) {
             hive2_iframe = document.createElement("iframe");
             hive2_iframe.setAttribute('src','stream/hive2_metrics.html')
-            hive2_iframe.setAttribute('style','height: auto; width: 100%; aspect-ratio:1.68; border: none;')
-            document.getElementById('hive2_metrics').appendChild(hive1_iframe);
-            document.getElementById('load_hive2_metrics').style.display = "none";
+            hive2_iframe.setAttribute('style','height: auto; width: 100%; aspect-ratio:2.25; border: none;')
+            document.getElementById('hive2_metrics').appendChild(hive2_iframe);
+            document.getElementById('load_hive2_metrics').text = "(refresh metrics)";
+        } else {
+            hive2_iframe.setAttribute('src','stream/hive2_metrics.html')
         }
     }
     </script> 
@@ -132,8 +137,9 @@
     I've also started to log climate data in and around the beehives and to measure bee activity with a <a href="https://ben.land/post/2023/12/15/bee-counting-neural-network/">convolutional neural network</a>. Check out the "metrics" links below for timeseries. This is a work in progress, so stay tuned!
     </p>
     <div id="hive_details">
-    <h3 style="display: inline-block">Hive One</h3> <a id="load_hive1_metrics" onclick="load_hive1_metrics()" style="font-size:small;">(metrics)</a>
+    <h2 style="display: inline-block">Hive One</h2> <a id="load_hive1_metrics" onclick="load_hive1_metrics()" style="font-size:small;">(metrics - beta)</a>
     <div id="hive1_metrics"></div>
+    <figure class="rightsmall"><img src="hive1.jpg"  alt="Hive One during August 2024."/></figure>
     <p style="">
     Scout bees were <a href="https://immich.ben.land/share/KcVeImq0CCUSl56xaOdp8OXOIbfTgBSJGRdPkSlGEZT2ZlpQmknVs3q8QaMVZNFYpa8">checking out the swarm lure</a> towards the end of April. Eventually <a href="https://immich.ben.land/share/QTbGFIk-EAT8NPsbUX_NTqcnAG8qvq4p6AFBIHm6uOR9BuJwjgMPNzOpzacQUMbO1kw">a swarm arrived</a>  and was re-homed May 2nd into an 8-frame deep hive box - Hive One - with some pre-drawn comb from last year's colony.
     </p>
@@ -143,15 +149,17 @@
     <p style="">
     As the season wraps up, the Hive One colony will be stockpiling pollen and honey and the population will start to reduce for the winter. This large supply of resources will attract other bees, wasps, and various pests. You will sometimes see European Giant Hornets hovering in front of the hive, hoping to grab a bee. Hive one is a large, strong colony and is more than able to defend itself, and guard bees will attack if the hornets get too close. Small hive beetle traps were installed early September as a cautionary measure, since Hive Two experienced an infestation (more below).
     </p>
-    <h3 style="display: inline-block">Hive Two</h3> <a id="load_hive2_metrics" onclick="load_hive2_metrics()" style="font-size:small;">(no metrics, yet)</a>
+    <h2 style="display: inline-block">Hive Two</h2> <a id="load_hive2_metrics" onclick="load_hive2_metrics()" style="font-size:small;">(no metrics - yet)</a>
     <div id="hive2_metrics"></div>
+    <figure class="rightsmall"><img src="hive2.jpg"  alt="Hive Two during August 2024."/></figure>
     <p style="">
     A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29 indicates they're here to stay, with the one frame in the bait hive full of brood, so foundation frames were added to the box. After solid growth in the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. Weak crawling bees were observed, indicating the foragers may have stumbled into pesticides. The colony appeared to have issues raising new bees, with capped worker pupa being uncapped and removed (these appear to be <a href="https://phys.org/news/2021-01-hygienic-honey-bees-resistant-destructive.html">hygienic bees</a>!), becoming a very sparse brood pattern by mid August. The queen was still present as of September but had stopped laying new eggs. 
     </p>
     <p style="">
     Low population of bees led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5th, losing 4 frames of drawn comb. Sugar water was fed to the bees to encourage new comb production, and we continued to monitor Hive Two for new eggs. I considered adding a frame of brood from Hive One to help this hive recover, but unfortunately the queen decided to abscond (leave) the morning of September 11th. Bees were observed leaving the hive en mass to presumably try to escape the issues they enountered this season. We will prepare for either a split of Hive One or a new swarm for Hive Two next season.
     </p>
-    <h3 style="">Astrophotography</h3>
+    <h2 style="">Astrophotography</h2>
+    <figure class="center"><img src="astro_banner_small.jpg"  alt="A selection of astrophotography images arranged in a banner."/></figure>
     <p style="">
     If you've seen my telescope out at night, <a href="https://ben.land/astro">pictures of galaxies, nebulas, etc., with descriptions</a> are available for viewing.
     </p>
