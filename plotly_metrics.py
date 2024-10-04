@@ -82,7 +82,7 @@ parser = argparse.ArgumentParser(
 parser.add_argument('count_db', help='Sqlite database of BeeCounter counts')
 parser.add_argument('metric_db', help='Sqlite database of BeeLogger metrics')
 parser.add_argument('html', help='HTML file to generate')
-parser.add_argument('-m','--min-date', default='2024-09-15', help='Minimum date to load into plotly')
+parser.add_argument('-m','--min-date', default='2024-04-10', help='Minimum date to load into plotly')
 parser.add_argument('-i','--interval', default=5*60, help='Time step interval in seconds')
 parser.add_argument('-s','--sleep', default=15, help='Time to sleep between updates in minutes')
 

@@ -130,7 +130,8 @@ while True:
 
     con = sqlite3.connect(args.count_db)
     cur = con.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS bee_counter(timestamp, bee_count)")
+    cur.execute("CREATE TABLE IF NOT EXISTS bee_counter ( timestamp, bee_count ) ")
+    cur.execute("CREATE INDEX IF NOT EXISTS timestamp ON bee_counter ( timestamp )")
     con.commit()
 
     stream = cv2.VideoCapture(args.stream)

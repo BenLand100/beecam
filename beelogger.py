@@ -37,10 +37,16 @@ cur.execute("""
     )
 """)
 cur.execute("""
+    CREATE INDEX IF NOT EXISTS timestamp_fast ON fast_sensors ( timestamp )
+""")
+cur.execute("""
     CREATE TABLE IF NOT EXISTS slow_sensors (
         timestamp, weight,
         ext_temperature, ext_pressure
     )
+""")
+cur.execute("""
+    CREATE INDEX IF NOT EXISTS timestamp_slow ON slow_sensors ( timestamp )
 """)
 con.commit()
 
