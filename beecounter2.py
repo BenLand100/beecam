@@ -130,8 +130,10 @@ while True:
 
     con = sqlite3.connect(args.count_db)
     cur = con.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS bee_counter ( timestamp, bee_count ) ")
-    cur.execute("CREATE INDEX IF NOT EXISTS timestamp ON bee_counter ( timestamp )")
+    with con:
+        cur.execute("CREATE TABLE IF NOT EXISTS bee_counter ( timestamp, bee_count ) ")
+        cur.execute("CREATE INDEX IF NOT EXISTS timestamp ON bee_counter ( timestamp )")
+    cur.close()
     con.commit()
 
     stream = cv2.VideoCapture(args.stream)
@@ -144,6 +146,8 @@ while True:
     start_ts = datetime.now()
     try:
         #snap_start = tracemalloc.take_snapshot()
+        cur = con.cursor()
+        cur.execute('begin')
         while True:
         
             if args.exit and datetime.now()-timedelta(minutes=RUNTIME) >= BEGIN:
@@ -202,11 +206,13 @@ while True:
                             labels.append((lx,ly))
                             sizes.append((w,h))
                             maxes.append(maxval)
-                cur = con.cursor()
                 cur.execute("INSERT INTO bee_counter VALUES (?,?)",(datetime.now(),len(labels)))
-                
+
                 if i % 500 == 0:
-                    con.commit()
+                    con.execute('commit')
+                    cur.close()
+                    cur = con.cursor()
+                    cur.execute('begin')
                     print(f'fps: {j/(datetime.now() - start_ts).seconds:0.2f}')
                     
                     gc.collect()
@@ -216,8 +222,6 @@ while True:
                     #    print(detail)
                     
                 print(datetime.now(),len(labels),labels)
-                
-                
                 
     except Exception as e:
         print(e)
