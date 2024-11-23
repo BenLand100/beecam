@@ -63,47 +63,6 @@
     }
     </script> 
     <script>
-      var h1 = document.getElementById("hive1");
-      var h2 = document.getElementById("hive2");
-      var h1l = document.getElementById("hive1_link");
-      var h2l = document.getElementById("hive2_link");
-      var bl = document.getElementById("both_link");
-      h1.style.display = "flex";
-      h2.style.display = "none";
-      h1l.style.fontWeight = "bold";
-      h2l.style.fontWeight = "normal";
-      bl.style.fontWeight = "normal";
-      function show_feeds(h1_vis, h2_vis) {
-        if (h1_vis & h2_vis) {
-          h1l.style.fontWeight = "normal";
-          h2l.style.fontWeight = "normal";
-          bl.style.fontWeight = "bold";
-        } else if (h1_vis) {
-          h1l.style.fontWeight = "bold";
-          h2l.style.fontWeight = "normal";
-          bl.style.fontWeight = "normal";
-        } else if (h2_vis) {
-          h1l.style.fontWeight = "normal";
-          h2l.style.fontWeight = "bold";
-          bl.style.fontWeight = "normal";
-        }
-        if (h1_vis) {
-          h1.style.display = "flex";
-          h1.style.justify_content = "space-around";
-          h1.style.align_items = "center";
-        } else {
-          h1.style.display = "none";
-        }
-        if (h2_vis) {
-          h2.style.display = "flex";
-          h2.style.justify_content = "space-around";
-          h2.style.align_items = "center";
-        } else {
-          h2.style.display = "none";
-        }
-      } 
-    </script> 
-    <script>
     var hive1_iframe = null;
     function load_hive1_metrics() {
         if (hive1_iframe == null) {
@@ -129,6 +88,9 @@
             hive2_iframe.setAttribute('src','stream/hive2_metrics.html')
         }
     }
+    function show_hive1_extras() {
+    	document.getElementById('hive1_extras').style.display = "inline-block"
+    }
     </script> 
     <p style="text-align: center;">
     These are livestreams of two wild-caught honeybee colonies that I keep in the Philly suburbs. Details on the livestreaming setup are <a href="https://ben.land/post/2023/06/20/hacking-together-beecam/">on my blog</a>. The text below contains some notes from the year, along with links to pictures, videos, and information.
@@ -136,7 +98,8 @@
     <p style="text-align: center;">
     I've also started to log climate data in and around the beehives and to measure bee activity with a <a href="https://ben.land/post/2023/12/15/bee-counting-neural-network/">convolutional neural network</a>. Check out the "metrics" links below for timeseries. This is a work in progress, so stay tuned!
     </p>
-    <div id="hive_details">
+    <div id="hive1_details">
+    </hr>
     <h2 style="display: inline-block">Hive One</h2> <a id="load_hive1_metrics" onclick="load_hive1_metrics()" style="font-size:small;">(metrics - live)</a>
     <div id="hive1_metrics"></div>
     <figure class="rightsmall"><img src="hive1.jpg"  alt="Hive One during August 2024."/></figure>
@@ -144,37 +107,99 @@
     Scout bees were <a href="https://immich.ben.land/share/KcVeImq0CCUSl56xaOdp8OXOIbfTgBSJGRdPkSlGEZT2ZlpQmknVs3q8QaMVZNFYpa8">checking out the swarm lure</a> towards the end of April. Eventually <a href="https://immich.ben.land/share/QTbGFIk-EAT8NPsbUX_NTqcnAG8qvq4p6AFBIHm6uOR9BuJwjgMPNzOpzacQUMbO1kw">a swarm arrived</a>  and was re-homed May 2nd into an 8-frame deep hive box - Hive One - with some pre-drawn comb from last year's colony.
     </p>
     <p style="">
-    Hive One is doing well, and weekly inspections indicate steady brood rearing and a healthy queen. The original deep box was full as of June 16, and an empty medium box was added so the bees can stockpile for the winter. A third box was added towards the end of July. A fourth box went on early in September to wrap up the season. Oxalic acid treatments for <a href="https://en.wikipedia.org/wiki/Varroa_destructor">Varroa mites</a> at the end of August revealing a low mite load and two full medium boxes of honey with another on the way suggest Hive One will be ready for winter.
+    Hive One is doing well, and weekly inspections indicate steady brood rearing and a healthy queen throughout the active season. The original deep box was full as of June 16, and an empty medium box was added so the bees can stockpile for the winter. A third box was added towards the end of July. A fourth box went on early in September to wrap up the season, but heavy drought conditions in the area resulted in very little honey produced, so this box was removed early October. Oxalic acid treatments for <a href="https://en.wikipedia.org/wiki/Varroa_destructor">Varroa mites</a> starting after they were housed in May and repeated roughly every two months, most recently October 28, indicate mites are in check as we head into Winter. This combined with plenty of honey stores (more on that below) give Hive One good odds to survive the winter.
+    </p>
+    <h3 style="display: inline-block"><a onclick="show_hive1_extras()">Extra info...</a></h3>
+    <div id="hive1_extras" style="display: none">
+    <p style="">
+    On October 2, the hive was fully disassembled to inspect for pests and disease at the end of the season. During this inspection, the old hive base base was swapped for one with a sensor platform I designed, with temperature/humidity sensors deployed in the hive as it was reassembled. This base has an integrated scale to track the weight of the entire hive and can record data from the temperature/humidity/brightness/pressure sensors deployed during the inspection. All of this is fed back over the ethernet network running the cameras, and processed into the data avaliable on the <a onclick="load_hive1_metrics()">live metrics link</a>. This also has a measure of (roughly) how many bees are detected on the live feed at any given time.
     </p>
     <p style="">
-    As the season wraps up, the Hive One colony will be stockpiling pollen and honey and the population will start to reduce for the winter. This large supply of resources will attract other bees, wasps, and various pests. You will sometimes see European Giant Hornets hovering in front of the hive, hoping to grab a bee. Hive one is a large, strong colony and is more than able to defend itself, and guard bees will attack if the hornets get too close. Small hive beetle traps were installed early September as a cautionary measure, since Hive Two experienced an infestation (more below).
+    Weight is perhaps the most important, and will monitor the honey consumption of the bees through the winter. The base plus the brood box as-is weigh about 40 lbs. At least 30lbs of that is "equipment" (including the top and cover here) with the other 10 lbs being mostly honey and bees.
+    The remaining weight - about 90 lbs - is all in the two medium boxes (the hive is configured as pictured above).
+    With empty medium boxes and frames weighing about 12lbs each, this leaves at least 70lbs of honey so far this season all told.
+    The bees will continue to forage until nightly frosts kill the flowers and/or the daytime temperatures are below 55F, so the season is mostly over as of the end of November except for an occasional warm day.
+    </p>
+    </p>Along with hive weight, it will be interesting to follow Temp-Brood and Temp-Top which track the temperature in the bottom (brood box) and top of the hive. The bees actively control the environment inside the hive, and will strive to maintain around 95F (35C) if brood are present. With no brood in the winter, the temperature will drop substantially depending on how the bees are positioned in the hive, but the bees will keep a local area warm with energy provided by stored honey. Some heat will rise to the top, along with a considerable amount of humidity from tens of thousands of respirating bees, which will provided a critical water source as it condenses on the cool hive outer walls.
     </p>
     <p style="">
-    On October 2 all the boxes were inspected to prepare for winter. The topmost (4th) box was removed to reduce empty space. This will be returned to the bees next season. During this inspection, the hive was fully disassembled, and the base was swapped for one with a sensor platform I built, collecting the metrics above. Weight is perhaps the most important, and will monitor the honey consumption of the bees through the winter. The base plus the brood box as-is weigh about 40 lbs. At least 30lbs of that is "equipment" (including the top and cover here) with the other 10 lbs being mostly honey and bees.
+    Combined, this temperature, weight, and humidity data will allow me to keep track of the colony's health through the winter, when opening the hive is not possible without stressing the colony.
     </p>
-    <p>
-    The remaining weight - 93 lbs - is all in the two medium boxes (the hive is configured as pictured above).
-    With empty medium boxes and frames weighing about 12lbs each, this leaves at least 70lbs of honey so far this season. The bees will continue to forage until nightly frosts kill the flowers and/or the daytime temperatures are below 55F.
-    </p>
-    </p>Along with hive weight, it will be interesting to follow Temp-Brood and Temp-Top as the season wraps up and through the winter as well, since these are above the brood chamber and in the top of the hive (along with the humidity sensors with similar names). The bees actively control the environment inside the hive, and will strive to maintain around 95F (35C). Some heat will rise to the top, along with a considerable amount of humidity from tens of thousands of respirating insects. Data from before October 2 is present for bee activity, but the other metrics are only accurate after October 2.
-    </p>
+    </div>
+    </div>
+    <div id="hive2_details">
+    </hr>
     <h2 style="display: inline-block">Hive Two</h2> <a id="load_hive2_metrics" onclick="load_hive2_metrics()" style="font-size:small;">(no metrics - yet)</a>
     <div id="hive2_metrics"></div>
     <figure class="rightsmall"><img src="hive2.jpg"  alt="Hive Two during August 2024."/></figure>
     <p style="">
-    A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29 indicates they're here to stay, with the one frame in the bait hive full of brood, so foundation frames were added to the box. After solid growth in the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. Weak crawling bees were observed, indicating the foragers may have stumbled into pesticides. The colony appeared to have issues raising new bees, with capped worker pupa being uncapped and removed (these appear to be <a href="https://phys.org/news/2021-01-hygienic-honey-bees-resistant-destructive.html">hygienic bees</a>!), becoming a very sparse brood pattern by mid August. The queen was still present as of September but had stopped laying new eggs. 
+    A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29. After solid growth through the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. A very sparse brood pattern presented by mid August. The queen was still present as of September but had stopped laying new eggs.
     </p>
     <p style="">
-    Low population of bees led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5th, losing 4 frames of drawn comb. Sugar water was fed to the bees to encourage new comb production, and we continued to monitor Hive Two for new eggs. I considered adding a frame of brood from Hive One to help this hive recover, but unfortunately the queen decided to abscond (leave) the morning of September 11th. Bees were observed leaving the hive en mass to presumably try to escape the issues they enountered this season. We will prepare for either a split of Hive One or a new swarm for Hive Two next season.
+    Regular Varroa treatment was done, along with Hive One, and no particular infestation was observed through the season, however the low population of bees eventually led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5th, losing 4 frames of drawn comb to the beetle larva. Unfortunately the queen decided to abscond (leave) the morning of September 11th, and bees were observed leaving the hive all at once, presumably try to escape the issues they enountered this season.
     </p>
+    <p style="">
+    Without bees, Hive Two sits empty this winter and will be put to use in the spring. Either a split from Hive One or another attempt at catching a wild swarm earlier in the season will find a home there.
+    </p>
+    </div>
+    </hr>
     <h2 style="">Astrophotography</h2>
     <figure class="center"><img src="astro_banner_small.jpg"  alt="A selection of astrophotography images arranged in a banner."/></figure>
     <p style="">
     If you've seen my telescope out at night, I keep <a href="https://ben.land/astro">a photo album of completed images</a> updated for public viewing, and have recently written <a href="https://ben.land/post/2024/09/28/deep-sky-images-vol-one/">a blog post on the best images so far</a>, which are also pictured in the banner above. Enjoy!
     </p>
-    </div>
   </body>
-
+    <script>
+      var h1 = document.getElementById("hive1");
+      var h2 = document.getElementById("hive2");
+      var h1l = document.getElementById("hive1_link");
+      var h2l = document.getElementById("hive2_link");
+      var bl = document.getElementById("both_link");
+      var h1d = document.getElementById("hive1_details");
+      var h2d = document.getElementById("hive2_details");
+      h1.style.display = "flex";
+      h1d.style.display = "inline-block";
+      h2.style.display = "none";
+      h2d.style.display = "none";
+      h1l.style.fontWeight = "bold";
+      h2l.style.fontWeight = "normal";
+      bl.style.fontWeight = "normal";
+      function show_feeds(h1_vis, h2_vis) {
+        if (h1_vis & h2_vis) {
+          h1l.style.fontWeight = "normal";
+          h2l.style.fontWeight = "normal";
+          bl.style.fontWeight = "bold";
+          h1d.style.display = "none";
+          h2d.style.display = "none";
+        } else if (h1_vis) {
+          h1l.style.fontWeight = "bold";
+          h2l.style.fontWeight = "normal";
+          bl.style.fontWeight = "normal";
+          h1d.style.display = "inline-block";
+          h2d.style.display = "none";
+        } else if (h2_vis) {
+          h1l.style.fontWeight = "normal";
+          h2l.style.fontWeight = "bold";
+          bl.style.fontWeight = "normal";
+          h1d.style.display = "none";
+          h2d.style.display = "inline-block";
+        }  
+        if (h1_vis) {
+          h1.style.display = "flex";
+          h1.style.justify_content = "space-around";
+          h1.style.align_items = "center";
+        } else {
+          h1.style.display = "none";
+        }
+        if (h2_vis) {
+          h2.style.display = "flex";
+          h2.style.justify_content = "space-around";
+          h2.style.align_items = "center";
+        } else {
+          h2.style.display = "none";
+        }
+      } 
+    </script>
 </html>
 
 
