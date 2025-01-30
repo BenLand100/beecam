@@ -77,7 +77,6 @@
     }
     var hive2_iframe = null;
     function load_hive2_metrics() {
-        return; //TBD
         if (hive2_iframe == null) {
             hive2_iframe = document.createElement("iframe");
             hive2_iframe.setAttribute('src','stream/hive2_metrics.html')
@@ -104,15 +103,18 @@
     <div id="hive1_metrics"></div>
     <figure class="rightsmall"><img src="hive1.jpg"  alt="Hive One during August 2024."/></figure>
     <p style="">
-    Scout bees were <a href="https://immich.ben.land/share/KcVeImq0CCUSl56xaOdp8OXOIbfTgBSJGRdPkSlGEZT2ZlpQmknVs3q8QaMVZNFYpa8">checking out the swarm lure</a> towards the end of April. Eventually <a href="https://immich.ben.land/share/QTbGFIk-EAT8NPsbUX_NTqcnAG8qvq4p6AFBIHm6uOR9BuJwjgMPNzOpzacQUMbO1kw">a swarm arrived</a>  and was re-homed May 2nd into an 8-frame deep hive box - Hive One - with some pre-drawn comb from last year's colony.
+    Scout bees were <a href="https://immich.ben.land/share/KcVeImq0CCUSl56xaOdp8OXOIbfTgBSJGRdPkSlGEZT2ZlpQmknVs3q8QaMVZNFYpa8">checking out the swarm lure</a> towards the end of April 2024. Eventually <a href="https://immich.ben.land/share/QTbGFIk-EAT8NPsbUX_NTqcnAG8qvq4p6AFBIHm6uOR9BuJwjgMPNzOpzacQUMbO1kw">a swarm arrived</a>  and was re-homed May 2, 2024 into an 8-frame deep hive box - Hive One - with some pre-drawn comb from 2023's colony.
     </p>
     <p style="">
-    Hive One is doing well, and weekly inspections indicate steady brood rearing and a healthy queen throughout the active season. The original deep box was full as of June 16, and an empty medium box was added so the bees can stockpile for the winter. A third box was added towards the end of July. A fourth box went on early in September to wrap up the season, but heavy drought conditions in the area resulted in very little honey produced, so this box was removed early October. Oxalic acid treatments for <a href="https://en.wikipedia.org/wiki/Varroa_destructor">Varroa mites</a> starting after they were housed in May and repeated roughly every two months, most recently October 28, indicate mites are in check as we head into Winter. This combined with plenty of honey stores (more on that below) give Hive One good odds to survive the winter.
+    Hive One is doing well, and weekly inspections indicate steady brood rearing and a healthy queen throughout the active season. The original deep box was full as of June 16, and an empty medium box was added so the bees can stockpile for the winter. A third box was added towards the end of July 2024. A fourth box went on early in September 2024 to wrap up the season, but heavy drought conditions in the area resulted in very little honey produced, so this box was removed early October 2024. Oxalic acid treatments for <a href="https://en.wikipedia.org/wiki/Varroa_destructor">Varroa mites</a> starting after they were housed in May 2024 and repeated roughly every two months, most recently October 28, 2024, indicate mites are in check as we head into Winter. This combined with plenty of honey stores (more on that below) give Hive One good odds to survive the winter.
+    </p>
+    <p style="">
+    As of the end of January 2025 the bees are doing well. On days above 50F, they will start to engage in cleaning behavior, carrying off dead bees and other refuse. Dead bees out front may appear to be a bad sign, but only strong colonies will maintain a clean hive inside. With only 10 lbs of the 70+lbs of winter stores consumed, and the worst of winter likely past, I and the bees will start to prepare for spring with mite treatments as the weather warms and the resumption of brood rearing. 
     </p>
     <h3 style="display: inline-block"><a onclick="show_hive1_extras()">Extra info...</a></h3>
     <div id="hive1_extras" style="display: none">
     <p style="">
-    On October 2, the hive was fully disassembled to inspect for pests and disease at the end of the season. During this inspection, the old hive base base was swapped for one with a sensor platform I designed, with temperature/humidity sensors deployed in the hive as it was reassembled. This base has an integrated scale to track the weight of the entire hive and can record data from the temperature/humidity/brightness/pressure sensors deployed during the inspection. All of this is fed back over the ethernet network running the cameras, and processed into the data avaliable on the <a onclick="load_hive1_metrics()">live metrics link</a>. This also has a measure of (roughly) how many bees are detected on the live feed at any given time.
+    On October 2, 2024, the hive was fully disassembled to inspect for pests and disease at the end of the season. During this inspection, the old hive base base was swapped for one with a sensor platform I designed, with temperature/humidity sensors deployed in the hive as it was reassembled. This base has an integrated scale to track the weight of the entire hive and can record data from the temperature/humidity/brightness/pressure sensors deployed during the inspection. All of this is fed back over the ethernet network running the cameras, and processed into the data avaliable on the <a onclick="load_hive1_metrics()">live metrics link</a>. This also has a measure of (roughly) how many bees are detected on the live feed at any given time.
     </p>
     <p style="">
     Weight is perhaps the most important, and will monitor the honey consumption of the bees through the winter. The base plus the brood box as-is weigh about 40 lbs. At least 30lbs of that is "equipment" (including the top and cover here) with the other 10 lbs being mostly honey and bees.
@@ -129,14 +131,14 @@
     </div>
     <div id="hive2_details">
     </hr>
-    <h2 style="display: inline-block">Hive Two</h2> <a id="load_hive2_metrics" onclick="load_hive2_metrics()" style="font-size:small;">(no metrics - yet)</a>
+    <h2 style="display: inline-block">Hive Two</h2> <a id="load_hive2_metrics" onclick="load_hive2_metrics()" style="font-size:small;">(metrics - live)</a>
     <div id="hive2_metrics"></div>
     <figure class="rightsmall"><img src="hive2.jpg"  alt="Hive Two during August 2024."/></figure>
     <p style="">
-    A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29. After solid growth through the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. A very sparse brood pattern presented by mid August. The queen was still present as of September but had stopped laying new eggs.
+    A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, 2024, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29, 2024. After solid growth through the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. A very sparse brood pattern presented by mid August. The queen was still present as of September but had stopped laying new eggs.
     </p>
     <p style="">
-    Regular Varroa treatment was done, along with Hive One, and no particular infestation was observed through the season, however the low population of bees eventually led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5th, losing 4 frames of drawn comb to the beetle larva. Unfortunately the queen decided to abscond (leave) the morning of September 11th, and bees were observed leaving the hive all at once, presumably try to escape the issues they enountered this season.
+    Regular Varroa treatment was done, along with Hive One, and no particular infestation was observed through the season, however the low population of bees eventually led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5, 2024, losing 4 frames of drawn comb to the beetle larva. Unfortunately the queen decided to abscond (leave) the morning of September 11, 2024, and bees were observed leaving the hive all at once, presumably try to escape the issues they enountered this season.
     </p>
     <p style="">
     Without bees, Hive Two sits empty this winter and will be put to use in the spring. Either a split from Hive One or another attempt at catching a wild swarm earlier in the season will find a home there.
