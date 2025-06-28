@@ -119,7 +119,7 @@ def plot_data(df_combined):
             fig.add_trace(
                 go.Scatter(x=df_combined.timebin, y=df_combined[metric], name=metric),
                 #secondary_y=('lux' in metric or '(C)' in metric or 'Bee' in metric),
-                secondary_y=('lb' in metric or '(F)' in metric),
+                secondary_y=('lb' in metric),# or '(F)' in metric),
             )
 
     b = datetime.datetime.now()
@@ -133,8 +133,8 @@ def plot_data(df_combined):
     #fig.update_yaxes(title_text="°F | lbs | % | Δmbar", secondary_y=False, range=[0,170], fixedrange=True)
     #fig.update_yaxes(title_text="Bees | °C | dB-klux", secondary_y=True, range=[0,70], fixedrange=True)
     
-    fig.update_yaxes(title_text="Bees | °C | % | Δmbar | dB-klux", secondary_y=False, range=[0,100], fixedrange=True)
-    fig.update_yaxes(title_text="°F | lbs", secondary_y=True, range=[0,200], fixedrange=True)
+    fig.update_yaxes(title_text="Bees | °C | °F | % | Δmbar | dB-klux", secondary_y=False, range=[0,100], fixedrange=True)
+    fig.update_yaxes(title_text="lbs", secondary_y=True, range=[0,250], fixedrange=True)
     
     return fig
 
