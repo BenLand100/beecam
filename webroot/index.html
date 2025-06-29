@@ -72,14 +72,12 @@
         video.src = src;
     }
     </script> 
-    <p style="text-align: center;">
+    <p style="">
     Above are <a href="https://ben.land/post/2023/06/20/hacking-together-beecam/">home-brew live streams</a> of two wild-caught honeybee colonies that I keep in the Philly suburbs. Below you'll find some notes, pictures, videos, and information about my suburban beekeeping.
-    </p>
-    <p style="text-align: center;">
     I also log environmental sensor data in and around the beehives, including weight of the hive, using <a href="https://ben.land/post/2025/04/06/beelogger-beehive-sensors/">some custom hardware in the hive platform</a>, and track bee activity using a <a href="https://ben.land/post/2023/12/15/bee-counting-neural-network/">convolutional neural network</a> that watches the stream.
     </p>
-    <p style="text-align: center;">
-    The (load metrics) links below will let you view the live data. Enjoy!
+    <p style="">
+    Use the headers above to switch between the two hives; the (load metrics) links below will let you view the live data; and you can collapse or expand sections with clickable section headers to view previous years.
     </p>
 
     <div id="hive1_details">
@@ -119,7 +117,7 @@
     <p style="">
     On March 22, 2025 a hive inspection reveals lots of capped brood, new eggs, and larva, with every indication that a round of bees had already started hatching. The deep box on the bottom had laying on the central six (of eight) frames, and the second medium had some brood on the inner two to four (one side) frames. Some drone brood was observed, but no queen cells, yet. As it takes around 21 days for a bee egg to hatch, these observations fits well with a timeline of the Queen starting laying just before March. Regular checks of the bottom board revealed wax cap debris consistent with hatching bees over the several days leading up to this inspection, which leads me to believe the temperature spike in February was a decent indicator of new spring brood.
     </p>
-    <h4 style="display: block;">Update - 4/18</h4>
+    <h4 style="display: block;" id="hive1-update-2025-04-18">Update - 4/18</h4>
     <figure class="right"><img src="swarm_data.png"  alt="A plot of hive sensor data around the time of the swarm."/><figcaption><p>A plot of hive sensor data around the time of the swarm.</p></figcaption></figure>
     <p style="">
     On April 15, 2024 the queen bee that overwintered decided it was time to increase the number of bee colonies in the world. 
@@ -131,7 +129,7 @@
     If one happens to hatch first, her odds are <i>very good</i>.
     Some time after that, I should start seeing new eggs being laid, indicating a successful colony reproduction.     
     </p>
-    <h4 style="display: block;">Update - 4/19</h4>
+    <h4 style="display: block;" id="hive1-update-2025-04-19">Update - 4/19</h4>
     <p style="">
     A second swarm popped out of hive one this morning, prompting me to do a full disassembly and inspection to see how many queen cells we are dealing with.
     The result? Too many! Generally a second swarm so soon after the first indicates a very congested hive, and indeed Most cells in the hive were either full of honey or capped brood, and the box was full of bees. 
@@ -142,7 +140,7 @@
     <p style="">
     We'll monitor both hives over the next several weeks to see that the queen mates successfully and starts to lay new eggs.
     </p>
-    <h4 style="display: block;">Update - 5/10</h4>
+    <h4 style="display: block;" id="hive1-update-2025-05-10">Update - 5/10</h4>
     <figure class="leftsmall"><img src="hive_one_20250609.jpg"  alt="Hive one with 3 nearly full supers in early June 2025."/><figcaption><p>Hive One with 3 nearly full supers in early June 2025. Custom XL entrance reducer for an XL hive.</p></figcaption></figure>
     <p style="">
     A full hive inspection revealed brood at all stages, including some recently capped (last several days), indicating the queen started laying around 12-15 days ago. 
@@ -155,30 +153,25 @@
     The empty frames in the bottom box were nearly fully drawn during the inspection, and second medium box on top was added a week earlier, noting the weight was trending high. 
     They've put on around 30lbs of honey and bees since the split!
     </p>
-    <h4 style="display: block;">Update - 6/8</h4>
+    <h4 style="display: block;" id="hive1-update-2025-06-08">Update - 6/8</h4>
     <p style="">
     A medium super ends up holding about 30 lbs of honey and wax, with it and its frames weighing 12 lbs. 
     Rapid growth of the colony in the good weather mid May led to a nearly full hive again around May 23 at 133 lbs, and another medium super went on taking it to 145 lbs.
     After a week, all comb in that new super was drawn, and by this inspection June 8, the third super was nearly full, nearing 170 lbs.
     Since the hive is full of bees and doing quite well, at the next inspection, at least one new super will go one, and perhaps one or two will come off for harvesting.
     </p>
-    </div>
-
-    <h3 style="display: block"><a onclick="toggle_id_visible('hive1_extras')">Sensor info...</a></h3>
-    <div id="hive1_extras" style="display: none">
+    <h4 style="display: block;" id="hive1-update-2025-06-28">Update - 6/28</h4>
     <p style="">
-    On October 2, 2024, the hive was fully disassembled to inspect for pests and disease at the end of the season. During this inspection, the old hive base base was swapped for one with <a href="https://ben.land/post/2025/04/06/beelogger-beehive-sensors/">a sensor platform I designed</a>, with temperature/humidity sensors deployed in the hive as it was reassembled. This base has an integrated scale to track the weight of the entire hive and can record data from the temperature/humidity/brightness/pressure sensors deployed during the inspection. All of this is fed back over the ethernet network running the cameras, and processed into the data available on the <a href="#load_hive1_metrics">live metrics link</a>. This also has a measure of (roughly) how many bees are detected on the live feed at any given time.
+    I haven't yet harvested any honey, but I've continued adding new medium boxes as the colony fills it up, now with five mediums on top of the one deep. 
+    Since I had good success with two full medium boxes on the deep going into winter last season, I'm planning to harvest at least two medium boxes worth of honey frames, and maybe a bit more, around mid-July.
+    When the weather is decent, the bees are stockpiling around 30lbs of honey (one medium box) every two weeks, or a bit over 2 pounds a day on average. 
+    The daily harvest is more than that by a fact or a few, but a large amount of that is water that must be evaporated, or is eaten by the bees.
     </p>
     <p style="">
-    Weight is perhaps the most important, and will monitor the honey consumption of the bees through the winter. The base plus the brood box as-is weigh about 40 lbs. At least 30 lbs of that is "equipment" (including the top and cover here) with the other 10 lbs being mostly honey and bees.
-    The remaining weight - about 90 lbs - is all in the two medium boxes (the hive is configured as pictured above).
-    With empty medium boxes and frames weighing about 12 lbs each, this leaves at least 70 lbs of honey so far this season all told.
-    The bees will continue to forage until nightly frosts kill the flowers and/or the daytime temperatures are below 55 F, so the season is mostly over as of the end of November except for an occasional warm day.
-    </p>
-    <p>Along with hive weight, it will be interesting to follow Temp-Brood and Temp-Top which track the temperature in the bottom (brood box) and top of the hive. The bees actively control the environment inside the hive, and will strive to maintain around 95F (35C) if brood are present. With no brood in the winter, the temperature will drop substantially depending on how the bees are positioned in the hive, but the bees will keep a local area warm with energy provided by stored honey. Some heat will rise to the top, along with a considerable amount of humidity from tens of thousands of respirating bees, which will provided a critical water source as it condenses on the cool hive outer walls.
-    </p>
-    <p style="">
-    Combined, this temperature, weight, and humidity data will allow me to keep track of the colony's health through the winter, when opening the hive is not possible without stressing the colony.
+    It's once again time for varroa mite treatments, and given that its hot out and in the middle of a good honey flow, I've completely removed the entrance reducers to make that process easier.
+    This has led to an enormous amount of bee activity today, and fewer bees being nonproductive hanging out on the front in the heat.
+    Since there are brood in the hive, I'll be doing several rounds of mite treatment, vaporizing an appropriate amount of oxalic acid per hive at 4 day intervals, for 3 or 4 treatments, depending on observations of dead mites.
+    This is to ensure mites emerging with newly hatched bees over the 12 day cycle of capping and emerging continue getting killed off instead of reproducing into yet more mites. 
     </p>
     </div>
 
@@ -214,7 +207,7 @@
     After several weeks the new queens in both hives should have gone on mating flights to drone congregation areas and started laying eggs.
     Until then, not much for the beekeeper to do!
     </p>
-    <h4 style="display: block;">Update - 5/10</h4>
+    <h4 style="display: block;" id="hive2-update-2025-05-10">Update - 5/10</h4>
     <figure class="leftsmall"><img src="hive_two_20250609.jpg"  alt="Hive two with two supers in early June 2025."/><figcaption><p>Hive Two with two supers in early June 2025. This colony is now a split from Hive One.</p></figcaption></figure>
     <p style="">
     The state of Hive Two was roughly the same as Hive One in full inspection earlier today, with a laying queen and brood in all stages.
@@ -228,7 +221,7 @@
     Much like Hive One, a Varroa treatment during the brood break between queens revealed and maintained a low mite count in the hive.
     Hopefully with fresh bees to take up nurse duties inside the hive, there will be more foraging bees available to start filling boxes with honey!
     </p>
-    <h4 style="display: block;">Update - 6/8</h4>
+    <h4 style="display: block;" id="hive2-update-2025-06-08">Update - 6/8</h4>
     <p style="">
     After a few weeks of minimal progress drawing comb, but steadily increasing hive activity, I decided to rearrange frames in the bottom-most deep box on May 31.
     The hive had only drawn comb on the inner four of eight total frames, with some minor progress on the next outer-most frames, which could be hurried along by convincing the bees to work on more than two fronts. 
@@ -239,6 +232,19 @@
     Sure enough, by the inspection on June 8, every frame in the bottom box was drawn, along with every frame in the new medium. 
     There's plenty of space still in this comb for at least one week worth of foraging, but soon a third medium will be needed.
     All in all, a good sign for a fresh split!
+    </p> 
+    <h4 style="display: block;" id="hive2-update-2025-06-28">Update - 6/28</h4>
+    <p style="">
+    Since the last update I've added a third medium box to a steadily growing Hive Two, which the bees have drawn and partially filled.
+    These frames have pre-waxed plastic foundation from Mann Lake (the premium waxed ones) but I've also been adding about a tenth of a pound of wax per frame right before introducing them to the hives.
+    This seems to encourage very rapid comb drawing, compared to boxes in the past the bees haven't touched for months.
+    As the third medium is around 50% full of honey, I will likely add another medium box, to total at four, over the course of the next weeks. 
+    </p>
+    <p style="">
+    Hive Two continues to be a few weeks behind Hive One, but I'm doing their mite treatments at the same time in an abundance of caution and to minimize the time I spend doing it.
+    They seem to be OK with having their entrance reducer removed for mite treatment access, but I am considering replacing it once treatment wraps up, or if they start getting harassed. 
+    Right now there's an abundance of blooming things for the bees to harvest, which is their preferred method of acquiring sugars, but as the summer continues, blooms will become scarce until the fall blooming plants kick off.
+    During that dearth, strong hives may decide to rob honey from hives unable to defend themselves, which can often come down to how big the entrance is relative to the number of bees able to defend.
     </p>
     </div>
 
