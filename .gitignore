@@ -1,1 +1,5 @@
 webroot/stream/*
+.*
+*.sqlite
+*.sqlite-journal
+*.bak

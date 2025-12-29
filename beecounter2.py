@@ -123,19 +123,18 @@ BEGIN = datetime.now()
 if args.exit:
     RUNTIME = np.random.random()*15+15
 
+model = construct_model(INPUT_SIZE[0], INPUT_SIZE[1], 16)
+model.load_weights(args.model)
+
+con = sqlite3.connect(args.count_db)
+cur = con.cursor()
+with con:
+    cur.execute("CREATE TABLE IF NOT EXISTS bee_counter ( timestamp, bee_count ) ")
+    cur.execute("CREATE INDEX IF NOT EXISTS timestamp ON bee_counter ( timestamp )")
+cur.close()
+con.commit()
+
 while True:
-
-    model = construct_model(INPUT_SIZE[0], INPUT_SIZE[1], 16)
-    model.load_weights(args.model)
-
-    con = sqlite3.connect(args.count_db)
-    cur = con.cursor()
-    with con:
-        cur.execute("CREATE TABLE IF NOT EXISTS bee_counter ( timestamp, bee_count ) ")
-        cur.execute("CREATE INDEX IF NOT EXISTS timestamp ON bee_counter ( timestamp )")
-    cur.close()
-    con.commit()
-
     stream = cv2.VideoCapture(args.stream)
 
     frames = collections.deque(maxlen=300) # running list of recent history
