@@ -109,8 +109,10 @@ parser = argparse.ArgumentParser(
             description='Counts bees in a stream that OpenCV can read using AI')
 parser.add_argument('count_db', help='Sqlite database for storing the counts')
 parser.add_argument('stream', help='URI for a video stream that OpenCV can read')
-parser.add_argument('-m','--model',default='model_v5.h5', help='Bee identification model weights')
-parser.add_argument('-e','--exit',action='store_true', help='Exit gracefully after some time if there are issues instead of restarting')
+parser.add_argument('-m','--model', default='model_v5.h5', help='Bee identification model weights')
+parser.add_argument('-s','--skip', default=1, type=int, help='Skip skip frames or capture every skip+1''th frame')
+parser.add_argument('-n','--nth', default=20, type=int, help='Find bees in ever nth captured frame')
+parser.add_argument('-e','--exit', action='store_true', help='Exit gracefully after some time if there are issues instead of restarting')
 
 args = parser.parse_args()
 
@@ -139,10 +141,10 @@ while True:
 
     frames = collections.deque(maxlen=300) # running list of recent history
 
-    skip = 1
     i = 0
     j = 0
     start_ts = datetime.now()
+    contour = None
     try:
         #snap_start = tracemalloc.take_snapshot()
         cur = con.cursor()
@@ -152,7 +154,7 @@ while True:
             if args.exit and datetime.now()-timedelta(minutes=RUNTIME) >= BEGIN:
                 sys.exit(0)
             
-            for _ in range(skip+1):
+            for _ in range(args.skip+1):
                 res, image = stream.read()
                 j = j+1
             i = i+1
@@ -160,7 +162,7 @@ while True:
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
             frames.append(gray)
 
-            if len(frames) > 200 and i%10 == 0:
+            if len(frames) > 200 and i%args.nth == 0:
 
                 print('processing')
                 raw = cv2.resize(image, LABEL_SIZE)
@@ -188,9 +190,11 @@ while True:
                 labels = []
                 sizes = []
                 maxes = []
+                if contour is None:
+                    contour = np.empty_like(logits,np.uint8)
                 for cnt in contours:
                     x,y,w,h = cv2.boundingRect(cnt)
-                    contour = np.zeros_like(logits,np.uint8)
+                    contour[:] = 0
                     cv2.drawContours(contour,[cnt],0,255,-1)
                     mask = contour==255
                     vals = logits[mask]
