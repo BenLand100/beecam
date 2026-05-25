@@ -30,16 +30,23 @@
       main {
         position: relative;
       }
+      h1 {
+        text-align: center;
+        margin: 1.2rem 0;
+      }
+      h2 {
+        margin: 1rem 0;
+      }
       button.theme-toggle {
         background: none;
         border: none;
         cursor: pointer;
         color: var(--text);
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         line-height: 1;
         padding: 0.3rem 0.4rem;
         position: absolute;
-        top: 10px;
+        top: 0px;
         right: 0px;
         align-items: center;
       }
@@ -47,12 +54,14 @@
       button.theme-toggle:hover {
         color: var(--text-muted);
       }
+
       .metric-button {
         background: none;
         color: var(--text);
         margin-left: auto;
         text-decoration: none;
-        padding: 0.3rem;
+        font-size: 1.0rem;
+        padding: 0.4rem;
         border: 1px solid var(--basecolor);
         cursor: pointer;
         border-radius: 8px;
@@ -123,6 +132,36 @@
         display: flex;
         align-items: baseline;
       }
+
+      .hive-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        margin: 1rem;
+      }
+
+      .hive-button {
+        background: none;
+        color: var(--text);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        width: 175px;
+        height: 50px;
+        font-size: 1.5rem;
+        font-weight: 500;
+        border: 1px solid var(--basecolor);
+        cursor: pointer;
+        border-radius: 8px;
+        transition: background 0.15s, color 0.15s;
+      }
+      .hive-button.shown {
+        background: var(--bg-offset);
+        font-weight: 650;
+      }
+      .hive-button:hover {
+        background: var(--bg-offset);
+      }
     </style>
   </head>
 
@@ -131,12 +170,14 @@
     <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark/light mode">
       <span id="theme-icon">&#9790;</span>
     </button>
-    <h1 style="text-align: center;">
-    BeeCam Livestreams
-    </h1>
-    <h3 style="text-align: center;">
-    <a id="hive1_link" onclick="show_feeds(true,false)">Hive One</a> | <a id="hive2_link" onclick="show_feeds(false,true)">Hive Two</a> | <a id="both_link" onclick="show_feeds(true,true)">Both Hives</a>
-    </h3>
+    <h1>BeeCam Livestreams</h1>
+
+    <div class='hive-buttons'>
+      <button class='hive-button' id="hive1-button" onclick="show_feeds(true,false)">Hive One</a>
+      <button class='hive-button' id="hive2-button" onclick="show_feeds(false,true)">Hive Two</a>
+      <button class='hive-button' id="both-button" onclick="show_feeds(true,true)">Both Hives</a>
+    </div>
+
     <div id="hive1">
     <video id="hive1_stream" width="100%" controls style=""></video>
     </div>
@@ -179,7 +220,7 @@
     I also log environmental sensor data in and around the beehives, including weight of the hive, using <a href="https://ben.land/post/2025/04/06/beelogger-beehive-sensors/">some custom hardware in the hive platform</a>, and track bee activity using a <a href="https://ben.land/post/2023/12/15/bee-counting-neural-network/">convolutional neural network</a> that watches the stream.
     </p>
     <p style="font-size: smaller">
-    How to use: the header links above can switch between the hive live feeds; the "load metrics" buttons will let you view the live sensor data; finally, new updates are below with old updates collapsed into expandable sections.
+    The buttons at the top can switch between the hives; the "load metrics" buttons top right of the log will let you view the live sensor data; finally, the beekeeping log for the selected hive is below with old updates collapsed into expandable sections.
     </p>
 
     <hr/>
@@ -196,29 +237,92 @@
     </div>
     <div id="hive1_metrics"></div>
 
-    <div class="year-accordion" id="hive1-2024">
-      <button class="year-toggle" aria-expanded="false" aria-controls="hive1-2024-body" onclick="toggleAccordion(this)">
+    <div class="year-accordion" id="hive1-2026">
+      <button class="year-toggle" aria-expanded="false" aria-controls="hive1-2026-body" onclick="toggleAccordion(this)">
         <span class="year-toggle-left">
-          <h3 class="year-label">2024</h3>
+          <h3 class="year-label">2026</h3>
         </span>
         <svg class="year-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </button>
-      <div class='year-body' id="hive1-2024-body"><div class='year-body-inner'>
-        <figure class="rightsmall"><img src="hive1.jpg"  alt="Hive One during August 2024."/><figcaption><p>Hive One during August 2024. This colony made it to 2025!</p></figcaption></figure>
-        <p>
-        Scout bees were <a href="https://immich.ben.land/share/KcVeImq0CCUSl56xaOdp8OXOIbfTgBSJGRdPkSlGEZT2ZlpQmknVs3q8QaMVZNFYpa8">checking out the swarm lure</a> towards the end of April 2024. Eventually <a href="https://immich.ben.land/share/QTbGFIk-EAT8NPsbUX_NTqcnAG8qvq4p6AFBIHm6uOR9BuJwjgMPNzOpzacQUMbO1kw">a swarm arrived</a>  and was re-homed May 2, 2024 into an 8-frame deep hive box - Hive One - with some pre-drawn comb from 2023's colony.
+      <div class='year-body' id="hive1-2026-body"><div class='year-body-inner'>
+        <h4 style="display: block;" id="hive1-update-2026-02-21">Update - 2/21</h4>
+
+        <p style="">
+        January and February have been especially cold with lows in the single digits and snow on the ground for weeks on end, including more coming soon after it finally melted.
+        Nonetheless, on this relatively warm 40+ F day, signs of life can be seen at the front of Hive One, even with a large pile of dead out front.
+        A few bees can be seen venturing out and deciding it's a bit too cold yet.
+        Inside, there is plenty of honey left, 50+ lbs,  and the bees have maintained a sufficient heat supply to be comfortable.
         </p>
-        <p>
-        Hive One is doing well, and weekly inspections indicate steady brood rearing and a healthy queen throughout the active season. The original deep box was full as of June 16, and an empty medium box was added so the bees can stockpile for the winter. A third box was added towards the end of July 2024. A fourth box went on early in September 2024 to wrap up the season, but heavy drought conditions in the area resulted in very little honey produced, so this box was removed early October 2024. Oxalic acid treatments for <a href="https://en.wikipedia.org/wiki/Varroa_destructor">Varroa mites</a> starting after they were housed in May 2024 and repeated roughly every two months, most recently October 28, 2024, indicate mites are in check as we head into Winter. This combined with plenty of honey stores (more on that below) give Hive One good odds to survive the winter.
+
+        <p style="">
+        Signs of life are limited compared to Hive Two (with active fliers), but I've noticed Hive One is less tolerant of cold weather. In the afternoon when it's warmer, they will probably take the opportunity for some Spring cleaning to get ready for the new season.
         </p>
-        <p>
-        As of the end of January 2025 the bees are doing well. On days above 50F, they will start to engage in cleaning behavior, carrying off dead bees and other refuse. Dead bees out front may appear to be a bad sign, but only strong colonies will maintain a clean hive inside. With only 10 lbs of the 70+lbs of winter stores consumed, and the worst of winter likely past, I and the bees will start to prepare for spring with mite treatments as the weather warms and the resumption of brood rearing.
+
+        <h4 id="hive1-update-2026-02-28">Update - 2/28</h4>
+
+        <p style="">
+        This is the first time this year that the temperature has been at or above 50F two days in a row, and the bees from both hives are out foraging.
+        It's unclear if Hive One has found any blooming plants yet, since they've explored far less than Hive Two and I haven't yet seen a bee with substantial pollen come back to Hive One, but there are bees coming and going from a clear distance, so they'll find something soon enough.
+        After the temperature was past 55F around 2pm, a very large and healthy population of bees made themselves seen with orientation flights and housekeeping activities.
+        I considered switching the entrance reducer to the medium setting, but some cool days in the coming weeks would mean going back to small, so leaving them as-is for now.
+        </p>
+
+        <p style="">
+        When it is conistently above 50F during the day, I'll need to check for swarming activity inside the hives given how well situated the colonies seem to be for Spring.
+        </p>
+
+        <h4 style="display: block;" id="hive1-update-2026-04-23">Update - 4/23</h4>
+
+        <p style="">
+        It has been a difficult season for the beekeeper so far, but Hive One seems to be doing well nonetheless.
+        As mentioned in the previous updates, hives in the early spring need to be monitored for swarming activity.
+        Ultimately, bee colonies that survive the winter with plenty of supplies and bees will try to swarm the next season to create a new colony with the existing queen, while the bees that remain behind raise another queen.
+        They may swarm again and again if not managed, so the beekeeper tries to prevent the initial swarm by managing space inside the hive and prevent secondary swarms by ensuring only a few queens are raised by the colony.
+        Hive One has not swarmed yet and therefore most likely still has a queen inside, however a swarm-mitigation inspection on Friday April 17 went very poorly and did not result in conclusive results.
+        </p>
+        <p style="">
+        While disassembling the hive during the April 17 inspection, two frames in the lowest deep box got stuck to the medium box above it.
+        These frames fell into the box and squished quite a few bees.
+        Generally speaking, a honeybee colony is quite docile, but this mistake registered as a direct attack, and the entire colony went on alert.
+        The only thing to be done was attempt to re-seat the frames, reassemble the hive, as best I could, and give the colony distance until they calmed down.
+        </p>
+        <p style="">
+        As it is, Hive One is huge with 2 deeps and 4 mediums. One deep is new undrawn frames added during the botched inspection, and at least three of the mediums are nearly full.
+        Hopefully this weekend I'll get back into Hive One with an extra pair of hands to clean up the mess from last time and get possibly harvest some spring honey to downsize a bit.
         </p>
       </div></div>
+      <!-- HIVE ONE CURRENT -->
+      <hr style="width: 85%;"/>
+      <div class='year-body current' id="hive1-current-body"> <div class='year-body-inner'>
+        <h4 id="hive1-update-2026-05-04">Update - 5/04</h4>
+
+        <p style="">
+        A bit of cooler weather has kept the forage rate low, but nonetheless Hive One has been stockpiling some honey since the extra deep was added last time.
+        Interestingly, Hive One has also not decided to swarm so far this year. Maybe the extra space gave the queen and workers something to do instead of prepare to leave.
+        I've decided to let Hive One work on building out that deep box before making any internal manipulations, but next time it will probably be time to harvest some honey!
+        </p>
+
+        <h4 style="display: block;" id="hive1-update-2026-05-17">Update - 5/17</h4>
+
+        <p style="">
+        Hive One had a swarm sneak out on Tuesday May 12, and I would not have noticed if not for the weight sensor showing a brief drop of 8 lbs.
+        As the day went on, the remaining bees brought back more than that in forage, so it's still a large and active colony.
+        That does put me in the interesting position of having two re-queening hives, so I won't be disturbing the brood area of Hive One until I'm convinced there's a laying queen or its been too long.
+        However, with a reduction in number of bees, a reduction in space was in order ...
+        </p>
+        <figure class="center"><img src="honey_variety.jpg"  alt="Honey from last year on the left, and the light honey from a May harvest on the right."/><figcaption><p>Honey from last year on the left, and the light honey from a May harvest on the right. Honey comes in many different shades and clarities, but the taste difference is more subtle.</p></figcaption></figure>
+        <p style="">
+        ... and we harvested one entire medium, plus five frames from another box, returning empty drawn frames.
+        This yielded some of the lightest honey so far, the nearly-yellow variety in the image above, along with some more standard-mix golden honey in half the frames like the middle-left jar.
+        The difference in color is due to differences in the nectar the bees are foraging when that honey was made, and tends to be lighter with Spring plants and darker with Fall plants.
+        The bees can store honey for a long time, and likely the darker honey I got this time was actually from last year, given where it was in the box, while the lighter honey was in empty frames added earlier this year.
+        Differences in acidity and pollen admixture drive the color and clarity, letting raw honey range from nearly black to nearly clear and everything in between.
+        </p>
+      </div> </div>
     </div>
-    <!-- 2024 END -->
+    <!-- 2026 END -->
 
     <div class="year-accordion" id="hive1-2025">
       <button class="year-toggle" aria-expanded="false" aria-controls="hive1-2025-body" onclick="toggleAccordion(this)">
@@ -370,92 +474,29 @@
     </div>
     <!-- 2025 END -->
 
-    <div class="year-accordion" id="hive1-2026">
-      <button class="year-toggle" aria-expanded="false" aria-controls="hive1-2026-body" onclick="toggleAccordion(this)">
+    <div class="year-accordion" id="hive1-2024">
+      <button class="year-toggle" aria-expanded="false" aria-controls="hive1-2024-body" onclick="toggleAccordion(this)">
         <span class="year-toggle-left">
-          <h3 class="year-label">2026</h3>
+          <h3 class="year-label">2024</h3>
         </span>
         <svg class="year-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </button>
-      <div class='year-body' id="hive1-2026-body"><div class='year-body-inner'>
-        <h4 style="display: block;" id="hive1-update-2026-02-21">Update - 2/21</h4>
-
-        <p style="">
-        January and February have been especially cold with lows in the single digits and snow on the ground for weeks on end, including more coming soon after it finally melted.
-        Nonetheless, on this relatively warm 40+ F day, signs of life can be seen at the front of Hive One, even with a large pile of dead out front.
-        A few bees can be seen venturing out and deciding it's a bit too cold yet.
-        Inside, there is plenty of honey left, 50+ lbs,  and the bees have maintained a sufficient heat supply to be comfortable.
+      <div class='year-body' id="hive1-2024-body"><div class='year-body-inner'>
+        <figure class="rightsmall"><img src="hive1.jpg"  alt="Hive One during August 2024."/><figcaption><p>Hive One during August 2024. This colony made it to 2025, split, survived another winter, and is going strong as two colonies in 2026!</p></figcaption></figure>
+        <p>
+        Scout bees were <a href="https://immich.ben.land/share/KcVeImq0CCUSl56xaOdp8OXOIbfTgBSJGRdPkSlGEZT2ZlpQmknVs3q8QaMVZNFYpa8">checking out the swarm lure</a> towards the end of April 2024. Eventually <a href="https://immich.ben.land/share/QTbGFIk-EAT8NPsbUX_NTqcnAG8qvq4p6AFBIHm6uOR9BuJwjgMPNzOpzacQUMbO1kw">a swarm arrived</a>  and was re-homed May 2, 2024 into an 8-frame deep hive box - Hive One - with some pre-drawn comb from 2023's colony.
         </p>
-
-        <p style="">
-        Signs of life are limited compared to Hive Two (with active fliers), but I've noticed Hive One is less tolerant of cold weather. In the afternoon when it's warmer, they will probably take the opportunity for some Spring cleaning to get ready for the new season.
+        <p>
+        Hive One is doing well, and weekly inspections indicate steady brood rearing and a healthy queen throughout the active season. The original deep box was full as of June 16, and an empty medium box was added so the bees can stockpile for the winter. A third box was added towards the end of July 2024. A fourth box went on early in September 2024 to wrap up the season, but heavy drought conditions in the area resulted in very little honey produced, so this box was removed early October 2024. Oxalic acid treatments for <a href="https://en.wikipedia.org/wiki/Varroa_destructor">Varroa mites</a> starting after they were housed in May 2024 and repeated roughly every two months, most recently October 28, 2024, indicate mites are in check as we head into Winter. This combined with plenty of honey stores (more on that below) give Hive One good odds to survive the winter.
         </p>
-
-        <h4 id="hive1-update-2026-02-28">Update - 2/28</h4>
-
-        <p style="">
-        This is the first time this year that the temperature has been at or above 50F two days in a row, and the bees from both hives are out foraging.
-        It's unclear if Hive One has found any blooming plants yet, since they've explored far less than Hive Two and I haven't yet seen a bee with substantial pollen come back to Hive One, but there are bees coming and going from a clear distance, so they'll find something soon enough.
-        After the temperature was past 55F around 2pm, a very large and healthy population of bees made themselves seen with orientation flights and housekeeping activities.
-        I considered switching the entrance reducer to the medium setting, but some cool days in the coming weeks would mean going back to small, so leaving them as-is for now.
-        </p>
-
-        <p style="">
-        When it is conistently above 50F during the day, I'll need to check for swarming activity inside the hives given how well situated the colonies seem to be for Spring.
-        </p>
-
-        <h4 style="display: block;" id="hive1-update-2026-04-23">Update - 4/23</h4>
-
-        <p style="">
-        It has been a difficult season for the beekeeper so far, but Hive One seems to be doing well nonetheless.
-        As mentioned in the previous updates, hives in the early spring need to be monitored for swarming activity.
-        Ultimately, bee colonies that survive the winter with plenty of supplies and bees will try to swarm the next season to create a new colony with the existing queen, while the bees that remain behind raise another queen.
-        They may swarm again and again if not managed, so the beekeeper tries to prevent the initial swarm by managing space inside the hive and prevent secondary swarms by ensuring only a few queens are raised by the colony.
-        Hive One has not swarmed yet and therefore most likely still has a queen inside, however a swarm-mitigation inspection on Friday April 17 went very poorly and did not result in conclusive results.
-        </p>
-        <p style="">
-        While disassembling the hive during the April 17 inspection, two frames in the lowest deep box got stuck to the medium box above it.
-        These frames fell into the box and squished quite a few bees.
-        Generally speaking, a honeybee colony is quite docile, but this mistake registered as a direct attack, and the entire colony went on alert.
-        The only thing to be done was attempt to re-seat the frames, reassemble the hive, as best I could, and give the colony distance until they calmed down.
-        </p>
-        <p style="">
-        As it is, Hive One is huge with 2 deeps and 4 mediums. One deep is new undrawn frames added during the botched inspection, and at least three of the mediums are nearly full.
-        Hopefully this weekend I'll get back into Hive One with an extra pair of hands to clean up the mess from last time and get possibly harvest some spring honey to downsize a bit.
+        <p>
+        As of the end of January 2025 the bees are doing well. On days above 50F, they will start to engage in cleaning behavior, carrying off dead bees and other refuse. Dead bees out front may appear to be a bad sign, but only strong colonies will maintain a clean hive inside. With only 10 lbs of the 70+lbs of winter stores consumed, and the worst of winter likely past, I and the bees will start to prepare for spring with mite treatments as the weather warms and the resumption of brood rearing.
         </p>
       </div></div>
-      <!-- HIVE ONE CURRENT -->
-      <hr style="width: 85%;"/>
-      <div class='year-body current' id="hive1-current-body"> <div class='year-body-inner'>
-        <h4 id="hive1-update-2026-05-04">Update - 5/04</h4>
-
-        <p style="">
-        A bit of cooler weather has kept the forage rate low, but nonetheless Hive One has been stockpiling some honey since the extra deep was added last time.
-        Interestingly, Hive One has also not decided to swarm so far this year. Maybe the extra space gave the queen and workers something to do instead of prepare to leave.
-        I've decided to let Hive One work on building out that deep box before making any internal manipulations, but next time it will probably be time to harvest some honey!
-        </p>
-
-        <h4 style="display: block;" id="hive1-update-2026-05-17">Update - 5/17</h4>
-
-        <p style="">
-        Hive One had a swarm sneak out on Tuesday May 12, and I would not have noticed if not for the weight sensor showing a brief drop of 8 lbs.
-        As the day went on, the remaining bees brought back more than that in forage, so it's still a large and active colony.
-        That does put me in the interesting position of having two re-queening hives, so I won't be disturbing the brood area of Hive One until I'm convinced there's a laying queen or its been too long.
-        However, with a reduction in number of bees, a reduction in space was in order ...
-        </p>
-        <figure class="center"><img src="honey_variety.jpg"  alt="Honey from last year on the left, and the light honey from a May harvest on the right."/><figcaption><p>Honey from last year on the left, and the light honey from a May harvest on the right. Honey comes in many different shades and clarities, but the taste difference is more subtle.</p></figcaption></figure>
-        <p style="">
-        ... and we harvested one entire medium, plus five frames from another box, returning empty drawn frames.
-        This yielded some of the lightest honey so far, the nearly-yellow variety in the image above, along with some more standard-mix golden honey in half the frames like the middle-left jar.
-        The difference in color is due to differences in the nectar the bees are foraging when that honey was made, and tends to be lighter with Spring plants and darker with Fall plants.
-        The bees can store honey for a long time, and likely the darker honey I got this time was actually from last year, given where it was in the box, while the lighter honey was in empty frames added earlier this year.
-        Differences in acidity and pollen admixture drive the color and clarity, letting raw honey range from nearly black to nearly clear and everything in between.
-        </p>
-      </div> </div>
     </div>
-    <!-- 2026 END -->
+    <!-- 2024 END -->
 
     </section>
     <!-- HIVE1 END -->
@@ -468,26 +509,83 @@
     </div>
     <div id="hive2_metrics"></div>
 
-    <div class="year-accordion" id="hive2-2024">
-      <button class="year-toggle" aria-expanded="false" aria-controls="hive2-2024-body" onclick="toggleAccordion(this)">
+    <div class="year-accordion" id="hive2-2026">
+      <button class="year-toggle" aria-expanded="false" aria-controls="hive2-2026-body" onclick="toggleAccordion(this)">
         <span class="year-toggle-left">
-          <h3 class="year-label">2024</h3>
+          <h3 class="year-label">2026</h3>
         </span>
         <svg class="year-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </button>
-      <div class='year-body' id="hive2-2024-body"><div class='year-body-inner'>
-        <figure class="rightsmall"><img src="hive2.jpg"  alt="Hive Two during August 2024."/><figcaption><p>Hive Two during     August 2024. This colony absconded in 2024.</p></figcaption></figure>
+      <div class='year-body' id="hive2-2026-body"><div class='year-body-inner'>
+        <h4 style="display: block;" id="hive2-update-2026-02-21">Update - 2/21</h4>
+
         <p style="">
-        A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, 2024, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29, 2024. After solid growth through the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. A very sparse brood pattern presented by mid August. The queen was still present as of September but had stopped laying new eggs.
+        The winter has been colder than usual, but Hive Two has shown a substantially high tolerance for cold.
+        At around 40 F the bees will vigorously venture out for cleaning duty and general exploration. So far I haven't seen any pollen come back, but it is too early in the season for blooming plants, so that's not unusual.
+        As I've noted before, there are fewer dead bees in front of Hive Two compared to Hive One. Unclear if this is due to a smaller colony, more active cadaver bees carrying off the dead, or simply fewer relative deaths.
+        </p>
+
+        <p style="">
+        The honey-weight of Hive Two is around 20 lbs to 30 lbs. This should be sufficient to get them through the remainder of the winter, even with a lot of snow and associated cold weather coming tomorrow.
+        </p>
+
+        <h4 style="display: block;" id="hive2-update-2026-02-28">Update - 2/28</h4>
+
+        <p style="">
+        Starting out the spring strong, Hive Two has already found some blooming plants, and was observed bringing back a dark orange pollen and a deep yellow pollen.
+        Pollen coming back to the hive is a strong indicator that brood is present, meaning a healthy queen and a good spring to come.
+        Pollen also means nectar sources have returned, the bees have found them, and the pressure is off from a survive-the-winter perspective as long as temperatures stay reasonable.
+        </p>
+      </div></div>
+      <!-- HIVE TWO CURRENT -->
+      <hr style="width: 85%;"/>
+      <div class='year-body current' id="hive2-current-body"> <div class='year-body-inner'>
+        <h4 style="display: block;" id="hive2-update-2026-04-23">Update - 4/23</h4>
+
+        <p style="">
+        Unlike Hive One, which is doing well in spite of the beekeeper, Hive Two is struggling despite the beekeeper's best efforts.
+        Presumably in protest of taxes, Hive Two emitted a 9-pound swarm on April 15. I went in later that day to check on things, and found an enormous quantity of burr comb with drone brood and queen cells between the boxes.
+        This same situation resulted in frames being stuck together in Hive One, but caused only minor issues disassembling Hive Two, which had a good brood pattern full of eggs, larva, and capped brood.
+        Burr comb removed, and a few queen cells left untouched, Hive Two was sealed back up to wait for the new queen to emerge.
         </p>
         <p style="">
-        Regular Varroa treatment was done, along with Hive One, and no particular infestation was observed through the season, however the low population of bees eventually led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5, 2024, losing 4 frames of drawn comb to the beetle larva. Unfortunately the queen decided to abscond (leave) the morning of September 11, 2024, and bees were observed leaving the hive all at once, presumably try to escape the issues they enountered this season.
+        The next weekend when checking the bottom board for Hive Two, I observed many small hive beetle larva among the debris.
+        Opening up the hive, it appeared that a few formerly-brood frames in the medium boxes had been slimed by the beetle larva.
+        Eight frames total were removed to downsize the hive by one medium box to give the smaller colony (after the swarm) a better chance of managing the beetles.
+        The amount of beetle larva appearing on the bottom board dropped off sharply after that first observation, and that threat seems to have passed.
+        </p>
+        <p style="">
+        Unfortunately, I have started to observe a substantial number of crawling bees in front of the hive and a regular pile of dead bees out front overnight.
+        This either indicates some disease in the hive or simply more bees dying at home since the hive is foraging less post-swarm.
+        That coupled with issues with small hive beetles points to a very weak colony in Hive Two.
+        They have plenty of honey, pollen, and some capped brood still, so I will continue to monitor for a successful re-queening.
+        In the event the queen fails to emerge and lay eggs in a reasonable amount of time, I will consider it fortuitous that I've had Hive One draw out another box of deep frames and start transplanting frames of eggs and brood into Hive Two in order to raise a new queen.
+        </p>
+
+        <h4 style="display: block;" id="hive2-update-2026-05-04">Update - 5/04</h4>
+
+        <p style="">
+        Frequent checks of Hive Two's bottom board over the last weeks have shown no mites, no larva, and the residue expected from bees uncapping honey cells and perhaps some brood.
+        Normal forage activity has resumed, along with some pollen returning the last week, and no more crawling bees have been observed.
+        My fear that there was a serious issue inside the hive is abated, and now the only question is whether the bees successfully requeened.
+        Besides looking for her in the box, the next best method is to confirm presence of eggs progressing to worker brood.
+        It's not quite yet time for the new queen to have hatched, established herself, gone on mating flights, and started laying, but in the next several weeks I should be able to observe the results of nature taking its course.
+        </p>
+
+        <h4 style="display: block;" id="hive2-update-2026-05-16">Update - 5/16</h4>
+
+        <p style="">
+        Before managing Hive One and its copious amounts of bees and honey, I took a look in Hive Two to see if I could spot a queen or eggs.
+        Removing the top two mediums so I could see the brood chamber in the bottom deep, I was unable to see any eggs or larva on the empty cells, but did see some backfilling.
+        In retrospect, I should have checked a frame in the bottom medium box, since that's where the queen would likely start laying, but there's always next time.
+        I have observed the workers in Hive Two are managing a much more constant 95F over the last several days, while the broodless two weeks before that showed quite a bit of variation.
+        Fingers crossed there's a laying queen, as the total number of bees in Hive Two is getting marginal for the current box configuration.
         </p>
       </div></div>
     </div>
-    <!-- 2024 END -->
+    <!-- 2026 END -->
 
     <div class="year-accordion" id="hive2-2025">
       <button class="year-toggle" aria-expanded="false" aria-controls="hive2-2025-body" onclick="toggleAccordion(this)">
@@ -637,83 +735,26 @@
     </div>
     <!-- 2025 END -->
 
-    <div class="year-accordion" id="hive2-2026">
-      <button class="year-toggle" aria-expanded="false" aria-controls="hive2-2026-body" onclick="toggleAccordion(this)">
+    <div class="year-accordion" id="hive2-2024">
+      <button class="year-toggle" aria-expanded="false" aria-controls="hive2-2024-body" onclick="toggleAccordion(this)">
         <span class="year-toggle-left">
-          <h3 class="year-label">2026</h3>
+          <h3 class="year-label">2024</h3>
         </span>
         <svg class="year-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <polyline points="6 9 12 15 18 9"/>
         </svg>
       </button>
-      <div class='year-body' id="hive2-2026-body"><div class='year-body-inner'>
-        <h4 style="display: block;" id="hive2-update-2026-02-21">Update - 2/21</h4>
-
+      <div class='year-body' id="hive2-2024-body"><div class='year-body-inner'>
+        <figure class="rightsmall"><img src="hive2.jpg"  alt="Hive Two during August 2024."/><figcaption><p>Hive Two during     August 2024. This colony absconded in 2024.</p></figcaption></figure>
         <p style="">
-        The winter has been colder than usual, but Hive Two has shown a substantially high tolerance for cold.
-        At around 40 F the bees will vigorously venture out for cleaning duty and general exploration. So far I haven't seen any pollen come back, but it is too early in the season for blooming plants, so that's not unusual.
-        As I've noted before, there are fewer dead bees in front of Hive Two compared to Hive One. Unclear if this is due to a smaller colony, more active cadaver bees carrying off the dead, or simply fewer relative deaths.
-        </p>
-
-        <p style="">
-        The honey-weight of Hive Two is around 20 lbs to 30 lbs. This should be sufficient to get them through the remainder of the winter, even with a lot of snow and associated cold weather coming tomorrow.
-        </p>
-
-        <h4 style="display: block;" id="hive2-update-2026-02-28">Update - 2/28</h4>
-
-        <p style="">
-        Starting out the spring strong, Hive Two has already found some blooming plants, and was observed bringing back a dark orange pollen and a deep yellow pollen.
-        Pollen coming back to the hive is a strong indicator that brood is present, meaning a healthy queen and a good spring to come.
-        Pollen also means nectar sources have returned, the bees have found them, and the pressure is off from a survive-the-winter perspective as long as temperatures stay reasonable.
-        </p>
-      </div></div>
-      <!-- HIVE TWO CURRENT -->
-      <hr style="width: 85%;"/>
-      <div class='year-body current' id="hive2-current-body"> <div class='year-body-inner'>
-        <h4 style="display: block;" id="hive2-update-2026-04-23">Update - 4/23</h4>
-
-        <p style="">
-        Unlike Hive One, which is doing well in spite of the beekeeper, Hive Two is struggling despite the beekeeper's best efforts.
-        Presumably in protest of taxes, Hive Two emitted a 9-pound swarm on April 15. I went in later that day to check on things, and found an enormous quantity of burr comb with drone brood and queen cells between the boxes.
-        This same situation resulted in frames being stuck together in Hive One, but caused only minor issues disassembling Hive Two, which had a good brood pattern full of eggs, larva, and capped brood.
-        Burr comb removed, and a few queen cells left untouched, Hive Two was sealed back up to wait for the new queen to emerge.
+        A second swarm <a href="https://immich.ben.land/share/TkUxF-b8evIrXhGyIFtihEQJZL2TGitHYDbTd8BHFdGqe2dquxsGYsEnEelGffXTC4U">finally moved into the bait hive</a> on the morning of June 23, 2024, and was moved to a new hive - Hive Two - next to the first hive. Hive inspection on June 29, 2024. After solid growth through the first half of July, filling 7 of 8 frames in the deep box with comb, honey, and brood, the population of the colony began to decrease. A very sparse brood pattern presented by mid August. The queen was still present as of September but had stopped laying new eggs.
         </p>
         <p style="">
-        The next weekend when checking the bottom board for Hive Two, I observed many small hive beetle larva among the debris.
-        Opening up the hive, it appeared that a few formerly-brood frames in the medium boxes had been slimed by the beetle larva.
-        Eight frames total were removed to downsize the hive by one medium box to give the smaller colony (after the swarm) a better chance of managing the beetles.
-        The amount of beetle larva appearing on the bottom board dropped off sharply after that first observation, and that threat seems to have passed.
-        </p>
-        <p style="">
-        Unfortunately, I have started to observe a substantial number of crawling bees in front of the hive and a regular pile of dead bees out front overnight.
-        This either indicates some disease in the hive or simply more bees dying at home since the hive is foraging less post-swarm.
-        That coupled with issues with small hive beetles points to a very weak colony in Hive Two.
-        They have plenty of honey, pollen, and some capped brood still, so I will continue to monitor for a successful re-queening.
-        In the event the queen fails to emerge and lay eggs in a reasonable amount of time, I will consider it fortuitous that I've had Hive One draw out another box of deep frames and start transplanting frames of eggs and brood into Hive Two in order to raise a new queen.
-        </p>
-
-        <h4 style="display: block;" id="hive2-update-2026-05-04">Update - 5/04</h4>
-
-        <p style="">
-        Frequent checks of Hive Two's bottom board over the last weeks have shown no mites, no larva, and the residue expected from bees uncapping honey cells and perhaps some brood.
-        Normal forage activity has resumed, along with some pollen returning the last week, and no more crawling bees have been observed.
-        My fear that there was a serious issue inside the hive is abated, and now the only question is whether the bees successfully requeened.
-        Besides looking for her in the box, the next best method is to confirm presence of eggs progressing to worker brood.
-        It's not quite yet time for the new queen to have hatched, established herself, gone on mating flights, and started laying, but in the next several weeks I should be able to observe the results of nature taking its course.
-        </p>
-
-        <h4 style="display: block;" id="hive2-update-2026-05-16">Update - 5/16</h4>
-
-        <p style="">
-        Before managing Hive One and its copious amounts of bees and honey, I took a look in Hive Two to see if I could spot a queen or eggs.
-        Removing the top two mediums so I could see the brood chamber in the bottom deep, I was unable to see any eggs or larva on the empty cells, but did see some backfilling.
-        In retrospect, I should have checked a frame in the bottom medium box, since that's where the queen would likely start laying, but there's always next time.
-        I have observed the workers in Hive Two are managing a much more constant 95F over the last several days, while the broodless two weeks before that showed quite a bit of variation.
-        Fingers crossed there's a laying queen, as the total number of bees in Hive Two is getting marginal for the current box configuration.
+        Regular Varroa treatment was done, along with Hive One, and no particular infestation was observed through the season, however the low population of bees eventually led to an infestation of <a href="https://en.wikipedia.org/wiki/Small_hive_beetle">small hive beetles</a> that had to be cleared September 5, 2024, losing 4 frames of drawn comb to the beetle larva. Unfortunately the queen decided to abscond (leave) the morning of September 11, 2024, and bees were observed leaving the hive all at once, presumably try to escape the issues they enountered this season.
         </p>
       </div></div>
     </div>
-    <!-- 2026 END -->
+    <!-- 2024 END -->
 
     </section>
     <!-- HIVE2 END -->
@@ -770,35 +811,35 @@
     <script>
       var h1 = document.getElementById("hive1");
       var h2 = document.getElementById("hive2");
-      var h1l = document.getElementById("hive1_link");
-      var h2l = document.getElementById("hive2_link");
-      var bl = document.getElementById("both_link");
+      var h1l = document.getElementById("hive1-button");
+      var h2l = document.getElementById("hive2-button");
+      var bl = document.getElementById("both-button");
       var h1d = document.getElementById("hive1_details");
       var h2d = document.getElementById("hive2_details");
       h1.style.display = "flex";
       h1d.style.display = "inline-block";
       h2.style.display = "none";
       h2d.style.display = "none";
-      h1l.style.fontWeight = "bold";
-      h2l.style.fontWeight = "normal";
-      bl.style.fontWeight = "normal";
+      h1l.classList.toggle('shown',true);
+      h2l.classList.toggle('shown',false);
+      bl.classList.toggle('shown',false);
       function show_feeds(h1_vis, h2_vis) {
         if (h1_vis & h2_vis) {
-          h1l.style.fontWeight = "normal";
-          h2l.style.fontWeight = "normal";
-          bl.style.fontWeight = "bold";
+          h1l.classList.toggle('shown',false);
+          h2l.classList.toggle('shown',false);
+          bl.classList.toggle('shown',true);
           h1d.style.display = "none";
           h2d.style.display = "none";
         } else if (h1_vis) {
-          h1l.style.fontWeight = "bold";
-          h2l.style.fontWeight = "normal";
-          bl.style.fontWeight = "normal";
+          h1l.classList.toggle('shown',true);
+          h2l.classList.toggle('shown',false);
+          bl.classList.toggle('shown',false);
           h1d.style.display = "inline-block";
           h2d.style.display = "none";
         } else if (h2_vis) {
-          h1l.style.fontWeight = "normal";
-          h2l.style.fontWeight = "bold";
-          bl.style.fontWeight = "normal";
+          h1l.classList.toggle('shown',false);
+          h2l.classList.toggle('shown',true);
+          bl.classList.toggle('shown',false);
           h1d.style.display = "none";
           h2d.style.display = "inline-block";
         }  
@@ -864,8 +905,8 @@
     <a href="/"> >> Home</a>
     <footer>
       <hr/>
-      Last Modified: August 14, 2025 <br/>
-      Copyright 2020-2025 Benjamin J. Land 
+      Last Modified: May 25, 2026 <br/>
+      Copyright 2020-2026 Benjamin J. Land
     </footer>
 
   </body>
