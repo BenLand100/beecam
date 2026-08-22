@@ -127,6 +127,13 @@ def plot_data(df_combined):
     fig.update_xaxes(title_text="Timestamp", insiderange=[a,b])
 
     fig.update_layout(
+        paper_bgcolor='rgba(0,0,0,0)',
+        legend=dict(
+            x=1.02,
+            xanchor='left',
+            y=0.5,
+            yanchor='middle',
+        ),
         margin={'t':0,'l':0,'b':0,'r':0}
     )
     
@@ -160,7 +167,32 @@ process_from(metrics_db, args.min_date, args.interval)
 print('Entering update loop!')
 while True:
     fig = plot_data(get_data(metrics_db))
-    html = fig.to_html(full_html=True)
+    plot_div = fig.to_html(full_html=False)
+    html = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <style>
+    *, html, body {{
+      margin: 0;
+      padding: 0;
+      background: transparent;
+      box-sizing: border-box;
+    }}
+    .plot-container {{
+      width: 100%;
+      height: 100vh;
+    }}
+  </style>
+</head>
+<body>
+  <div class="plot-container">
+    {plot_div}
+  </div>
+</body>
+</html>"""
     with open(args.html,'w') as fmetrics:
         fmetrics.write(html)
 
